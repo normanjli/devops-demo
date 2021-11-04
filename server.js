@@ -6,7 +6,7 @@ app.use(express.json())
 const students = [`Adrian`, `Norman`, `Spencer`]
 
 app.get(`/`, (req,res)=>{
-  res.send(path.join(__dirname, `/index.html`))
+  res.send(path.join(__dirname, `public/index.html`))
 })
 const port = process.env.PORT || 5050;
 
