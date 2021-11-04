@@ -36,7 +36,7 @@ app.post(`/api/students`,(req,res)=>{
       rollbar.error(`no student name added`)
     }else if(name === `french press`){
       res.status(418).send(`No coffee drinkers allowed`)
-      rollbar.critical(`I cant believe someone tried to add a french press`)
+      rollbar.warning(`some one tried to add a frenchpress`)
     }
     else{
       res.status(400).send(`student already exists`)
