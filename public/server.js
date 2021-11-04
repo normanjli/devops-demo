@@ -33,8 +33,10 @@ app.post(`/api/students`,(req,res)=>{
       res.status(200).send(students)
     }else if(name===``){
       res.status(400).send(`enter a student name`)
+      rollbar.error(`no student name added`)
     }else{
       res.status(400).send(`student already exists`)
+      rollbar.error(`Attempted to add a student that already exists`)
     }
   }catch (err){console.log(err)}
 
