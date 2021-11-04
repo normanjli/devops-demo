@@ -23,8 +23,21 @@ app.get(`/api/students`,(req,res)=>{
   rollbar.log("Hello world!");
 })
 app.post(`/api/students`,(req,res)=>{
-  students.push(req.body)
-  res.status(200).send(students)
+  let {name} = req.body
+  students.push(name)
+  const index = students.findIndex(student=>{
+    return student===name
+  })
+  try{
+    if (index ===-1 && name !== ``){
+      res.status(200).send(students)
+    }else if(name===``){
+      res.status(400).send(`enter a student name`)
+    }else{
+      res.status(400).send(`student already exists`)
+    }
+  }catch (err){console.log(err)}
+
 })
 app.delete(`/api/students/:id`,(req,res)=>{
   res.status(200).send(students)
