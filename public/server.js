@@ -11,7 +11,7 @@ var rollbar = new Rollbar({
 });
 
 // record a generic message and send it to Rollbar
-rollbar.log("Hello world!");
+// rollbar.log("Hello world!");
 
 const students = [`Adrian`, `Norman`, `Spencer`]
 
@@ -19,6 +19,14 @@ app.get(`/`, (req,res)=>{
   res.sendFile(path.join(__dirname, `./index.html`))
 })
 app.get(`/api/students`,(req,res)=>{
+  res.status(200).send(students)
+  rollbar.log("Hello world!");
+})
+app.post(`/api/students`,(req,res)=>{
+  students.push(req.body)
+  res.status(200).send(students)
+})
+app.delete(`/api/students/:id`,(req,res)=>{
   res.status(200).send(students)
 })
 const port = process.env.PORT || 5050;
