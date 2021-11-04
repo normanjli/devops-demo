@@ -28,15 +28,15 @@ app.post(`/api/students`,(req,res)=>{
     return student===name
   })
   try{
-    if (index ===-1 && name !== ``){
+    if(name === `french press`){
+      res.status(418).send(`No coffee drinkers allowed`)
+      rollbar.warning(`some one tried to add a frenchpress`)
+    }else if (index ===-1 && name !== ``){
       students.push(name)
       res.status(200).send(students)
     }else if(name===``){
       res.status(400).send(`enter a student name`)
       rollbar.error(`no student name added`)
-    }else if(name === `french press`){
-      res.status(418).send(`No coffee drinkers allowed`)
-      rollbar.warning(`some one tried to add a frenchpress`)
     }
     else{
       res.status(400).send(`student already exists`)
