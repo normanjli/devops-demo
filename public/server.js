@@ -24,12 +24,12 @@ app.get(`/api/students`,(req,res)=>{
 })
 app.post(`/api/students`,(req,res)=>{
   let {name} = req.body
-  students.push(name)
   const index = students.findIndex(student=>{
     return student===name
   })
   try{
     if (index ===-1 && name !== ``){
+      students.push(name)
       res.status(200).send(students)
     }else if(name===``){
       res.status(400).send(`enter a student name`)
