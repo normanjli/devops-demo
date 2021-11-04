@@ -40,6 +40,8 @@ app.post(`/api/students`,(req,res)=>{
 
 })
 app.delete(`/api/students/:id`,(req,res)=>{
+  const targetStudent = req.params.id
+  students.splice(targetStudent, 1)
   res.status(200).send(students)
 })
 const port = process.env.PORT || 5050;
