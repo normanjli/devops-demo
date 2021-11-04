@@ -15,6 +15,7 @@
         <input type='text' placeholder='type a student name here...' />
         <button>add student</button>
     </form>
+    <button id='breakme' value='norman'>Click me!</button>
     <section></section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -22,6 +23,7 @@
         const addForm = document.querySelector('form');
         const nameInput = document.querySelector('input');
         const container = document.querySelector('section');
+        const breakButt= document.getElementById(`breakme`);
 
         function putTheThingInTheView(res) {
             container.innerHTML = ''
@@ -74,7 +76,25 @@
             .then(res => {
                 putTheThingInTheView(res)
             })
+        const breakMe = (event) => {
+            axios.post(`/api/break`, {name:event.target.value})
+            .then(res=>putTheThingInTheView(res))
+            .catch(err => {
+                    nameInput.value = ''
 
+                    const notif = document.createElement('aside')
+                    notif.innerHTML = `<p>${err.response.data}</p>
+                    <button class="close">close</button>`
+                    document.body.appendChild(notif)
+
+                    document.querySelectorAll('.close').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.target.parentNode.remove()
+                        })
+                    })
+                })
+            }
+        breakButt.addEventListener(`click`, breakMe)
         addForm.addEventListener('submit', submitHandler)
     </script>
 </body>

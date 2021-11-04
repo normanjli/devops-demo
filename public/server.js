@@ -46,6 +46,15 @@ app.delete(`/api/students/:id`,(req,res)=>{
   students.splice(targetStudent, 1)
   res.status(200).send(students)
 })
+app.post(`/api/break`,(req,res)=>{
+  const {name} = req.body
+  try{
+    doesntExist()
+  }catch (error){
+    rollbar.critical(`jeez ${name}`)
+    res.status(400).send(`${name} broke my page`)
+  }
+})
 const port = process.env.PORT || 5050;
 
 app.listen(port, ()=> console.log(`Server listening on ${port}`))
