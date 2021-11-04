@@ -14,7 +14,7 @@ var rollbar = new Rollbar({
 // rollbar.log("Hello world!");
 
 const students = [`Adrian`, `Norman`, `Spencer`]
-const doesntExist=()=> students.push(`hmm`)
+
 app.get(`/`, (req,res)=>{
   res.sendFile(path.join(__dirname, `./index.html`))
 })
