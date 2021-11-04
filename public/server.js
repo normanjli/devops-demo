@@ -42,7 +42,7 @@ app.post(`/api/students`,(req,res)=>{
 
 })
 app.delete(`/api/students/:id`,(req,res)=>{
-  const targetStudent = req.params.id
+  const targetStudent = +req.params.id
   students.splice(targetStudent, 1)
   res.status(200).send(students)
 })
