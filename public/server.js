@@ -20,7 +20,7 @@ app.get(`/`, (req,res)=>{
 })
 app.get(`/api/students`,(req,res)=>{
   res.status(200).send(students)
-  rollbar.log("Hello world!");
+  // rollbar.log("Hello world!");
 })
 app.post(`/api/students`,(req,res)=>{
   let {name} = req.body
