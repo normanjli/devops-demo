@@ -18,7 +18,9 @@ const students = [`Adrian`, `Norman`, `Spencer`]
 app.get(`/`, (req,res)=>{
   res.sendFile(path.join(__dirname, `./index.html`))
 })
-
+app.get(`/api/students`,(req,res)=>{
+  res.status(200).send(students)
+})
 const port = process.env.PORT || 5050;
 
 app.listen(port, ()=> console.log(`Server listening on ${port}`))
